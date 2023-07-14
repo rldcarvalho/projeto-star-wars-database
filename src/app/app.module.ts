@@ -10,6 +10,7 @@ import { HomeComponent } from './components/pages/home/home.component';
 import { HeaderComponent } from './shared/components/header/header.component';
 import { FilmsComponent } from './components/pages/films/films.component';
 import { StarshipsComponent } from './components/pages/starships/starships.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -22,9 +23,11 @@ import { StarshipsComponent } from './components/pages/starships/starships.compo
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+
   ],
   providers: [],
   bootstrap: [AppComponent]
