@@ -12,6 +12,7 @@ export class FilmsComponent {
 
    jsonFilmsURL = 'assets/films.json'
    films: Film[] = [];
+   displayedColumns: string[] = ['title', 'director', 'producer', 'releaseDate'];
 
    getFilms() {
     this.http.get<any>(this.jsonFilmsURL).subscribe((response) => {
