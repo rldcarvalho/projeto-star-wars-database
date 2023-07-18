@@ -1,6 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { Film } from 'src/app/shared/models/film';
+import { SwapiService } from './../../../services/swapi.service';
 import { Component } from '@angular/core';
-import { Film } from './film';
 
 @Component({
   selector: 'app-films',
@@ -8,27 +8,13 @@ import { Film } from './film';
   styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent {
-   constructor(private http: HttpClient){}
+   constructor(private swapiService: SwapiService){}
 
-   jsonFilmsURL = 'assets/films.json'
    films: Film[] = [];
-   displayedColumns: string[] = ['title', 'director', 'producer', 'releaseDate'];
+   displayedColumns: string[] = ['title', 'director', 'producer', 'release_date'];
 
    getFilms() {
-    this.http.get<any>(this.jsonFilmsURL).subscribe((response) => {
-      this.films = response.results.map((filmData: any) => {
-        const releaseDate = this.formatDate(filmData.release_date);
-        
-        const film: Film = {
-          title: filmData.title,
-          director: filmData.director,
-          producer: filmData.producer,
-          releaseDate: releaseDate
-        };
-        return film;
-      });
-      console.log(this.films);
-    });
+    this.swapiService.getFilms().subscribe((response) => this.films = response.results)
   }
 
   formatDate(date: string){
