@@ -13,9 +13,15 @@ export class FilmsComponent {
   films: Film[] = [];
   displayedColumns: string[] = ['title', 'director', 'producer', 'release_date'];
   filterTitle = '';
+  showSpinner = false;
 
   getFilms(title?: string) {
-    this.swapiService.getFilms(title).subscribe((response) => this.films = response.results)
+    this.showSpinner = true
+    this.swapiService.getFilms(title).subscribe((response) => {
+    this.films = response.results;
+    this.showSpinner = false;
+  })
+  
   }
 
   filterByTitle(){
