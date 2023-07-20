@@ -1,3 +1,10 @@
+<form (submit)="filterByTitle()">
+  <mat-form-field>
+    <mat-label>Buscar por título</mat-label>
+    <input name="filterTitle" matInput [(ngModel)]="filterTitle" />
+  </mat-form-field>
+</form>
+
 <table mat-table [dataSource]="films" class="mat-elevation-z8">
   <ng-container matColumnDef="title">
     <th mat-header-cell *matHeaderCellDef>Título</th>

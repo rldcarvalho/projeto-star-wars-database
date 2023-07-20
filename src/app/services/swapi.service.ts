@@ -13,8 +13,11 @@ export class SwapiService {
 
   baseUrl = 'https://swapi.dev/api';
 
-  getFilms():  Observable<APIResponse<Film>> {
+  getFilms(title?: string):  Observable<APIResponse<Film>> {
     let url = `${this.baseUrl}/films`
+    if (title) {
+      url += `?search=${title}`
+    }
     return this.http.get<APIResponse<Film>>(url)
   };
 

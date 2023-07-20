@@ -8,13 +8,18 @@ import { Component } from '@angular/core';
   styleUrls: ['./films.component.scss']
 })
 export class FilmsComponent {
-   constructor(private swapiService: SwapiService){}
+  constructor(private swapiService: SwapiService){}
 
-   films: Film[] = [];
-   displayedColumns: string[] = ['title', 'director', 'producer', 'release_date'];
+  films: Film[] = [];
+  displayedColumns: string[] = ['title', 'director', 'producer', 'release_date'];
+  filterTitle = '';
 
-   getFilms() {
-    this.swapiService.getFilms().subscribe((response) => this.films = response.results)
+  getFilms(title?: string) {
+    this.swapiService.getFilms(title).subscribe((response) => this.films = response.results)
+  }
+
+  filterByTitle(){
+    this.getFilms(this.filterTitle)
   }
 
   formatDate(date: string){
