@@ -22,10 +22,12 @@ export class SwapiService {
     return this.http.get<APIResponse<Film>>(url)
   };
 
-  getStarships(name?: string): Observable<APIResponse<Starship>> {
+  getStarships(page: number, name?: string): Observable<APIResponse<Starship>> {
     let url = `${this.baseUrl}/starships`;
     if(name) {
       url += `?search=${name}`;
+    } else { 
+      url += `/?page=${page}`;
     }
     return this.http.get<APIResponse<Starship>>(url)
   }

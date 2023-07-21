@@ -33,4 +33,13 @@
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
     <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
   </table>
+
+  <mat-paginator
+    (page)="changePage($event)"
+    [length]="totalStarships"
+    [pageSize]="10"
+    [pageIndex]="currentPage - 1"
+    aria-label="Selecione a página"
+  >
+  </mat-paginator>
 </div>
