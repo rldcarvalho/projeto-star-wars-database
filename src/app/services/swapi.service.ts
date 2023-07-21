@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { APIResponse } from '../shared/models/apiResponse';
 import { Film } from '../shared/models/film';
 import { Observable } from 'rxjs';
+import { Starship } from '../shared/models/starship';
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,13 @@ export class SwapiService {
     }
     return this.http.get<APIResponse<Film>>(url)
   };
+
+  getStarships(name?: string): Observable<APIResponse<Starship>> {
+    let url = `${this.baseUrl}/starships`;
+    if(name) {
+      url += `?search=${name}`;
+    }
+    return this.http.get<APIResponse<Starship>>(url)
+  }
 
 }
