@@ -31,7 +31,11 @@
     </ng-container>
 
     <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+    <tr
+      mat-row
+      *matRowDef="let row; columns: displayedColumns"
+      (click)="clickedRow(row)"
+    ></tr>
   </table>
 
   <mat-paginator
@@ -42,4 +46,15 @@
     aria-label="Selecione a página"
   >
   </mat-paginator>
+</div>
+
+<div class="details" *ngIf="detailsStarships">
+  <div *ngFor="let details of detailsStarships">
+    <p>Nome: {{ details.name }}</p>
+    <p>Valor: {{ details.cost_in_credits }}$</p>
+    <p>
+      velocidade atmosférica máxima:
+      {{ details.max_atmosphering_speed }}
+    </p>
+  </div>
 </div>

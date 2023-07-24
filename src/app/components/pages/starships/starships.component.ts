@@ -16,6 +16,7 @@ export class StarshipsComponent {
   filterStarship = '';
   totalStarships!: number;
   currentPage = 1;
+  detailsStarships: Starship[] = [];
 
   constructor(private swapiService: SwapiService){}
 
@@ -35,6 +36,14 @@ export class StarshipsComponent {
 
   filterByName(){
     this.getStarships(1, this.filterStarship);
+  }
+
+  clickedRow(row: Starship){
+    if(this.detailsStarships){
+      this.detailsStarships = [];
+      this.detailsStarships.push(row);
+      console.log(row);
+    }
   }
 
   ngOnInit() {
